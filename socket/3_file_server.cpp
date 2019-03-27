@@ -82,13 +82,14 @@ void file_server(const char *path)
     fileSize = ftell(fp);        // 得到文件大小
     fseek(fp, 0, SEEK_SET);      // 定位到文件头
  
+    // 将文件大小发送给client
     if(write(cnfd, (unsigned char *)&fileSize, 4) != 4) {
         perror("write");
         close(cnfd);
         close(skfd);
         exit(1);
     }
- 
+    // 接受client返回的'ok'
     if( read(cnfd, buf, 2) != 2) {
         perror("read");
         close(cnfd);
