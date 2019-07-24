@@ -15,7 +15,7 @@ typedef struct
  */
 int main(int argc, char const *argv[])
 {
-	if (argc)
+	if (argc < 2)
 	{
 		printf("usage: %s key\n", argv[0]);
 		exit(1);
@@ -35,11 +35,11 @@ int main(int argc, char const *argv[])
 	printf("msq id: %d\n", msq_id);
 
 	// 定义要发送的消息
-	MSG m1 = {4, 4. 401};
-	MSG m2 = {2, 2. 402};
-	MSG m3 = {1, 1. 402};
-	MSG m4 = {6, 6. 403};
-	MSG m5 = {6, 66. 404};
+	MSG m1 = {4, 4, 401};
+	MSG m2 = {2, 2, 402};
+	MSG m3 = {1, 1, 402};
+	MSG m4 = {6, 6, 403};
+	MSG m5 = {6, 66, 404};
 
 	// 发送消息到消息队列
 	if (msgsnd(msq_id, &m1, sizeof(MSG)-sizeof(long), IPC_NOWAIT) < 0)

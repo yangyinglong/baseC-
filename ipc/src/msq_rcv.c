@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 	}
 
 	key_t key = atoi(argv[1]);
-	long type = atoi(argc[2]);
+	long type = atoi(argv[2]);
 
 	// 获取指定的消息队列
 	int msq_id;
