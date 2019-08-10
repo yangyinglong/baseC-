@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 /**
+ * 必须先创建管道 mkfifo s.pipe
  * 命名管道的写
  */
 int main(int argc, char const *argv[])

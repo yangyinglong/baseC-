@@ -1,3 +1,41 @@
+ipc 进程间通讯
+
+管道
+1. src/cal_pipe.c 			父子进程通过管道进行数据通讯
+2. src/cmd_pipe.c 			父进程创建一个进程扇，两个子进程执行cmd命令
+							标准输入输出重定向到管道读端和写端
+3. src/add.c 				从标准输入读取数据，将结果输出到标准输入
+   src/co_process.c 		创建两个管道，进行双向通讯
+4. src/break_pipe_r.c 		读取一个写端关闭的管道
+5. src/break_pipe_w.c 		写入一个读端关闭的管道
+7. src/popen_rw.c 			标准库中的管道操作
+8. src/fifo_read.c 			命名管道的读
+9. src/fifo_write.c 		命名管道的写
+
+消息队列
+10. src/msq_snd.c 			消息队列的创建和发送消息数据
+11. src/msq_rcv.c 			消息队列接受消息
+
+共享内存
+12. include/tell.h 			定义通过管道来通知进程读写共享内存
+13. src/tell.c 				实现tell.h
+14. cal_shm.c 				父进程往共享内存中写入数据，通过管道通知子进程读取数据
+
+15. include/account.h 		定义银行账户结构体和对账户的基本取款存款查看操作
+16. src/account.c 			实现account.h
+
+信号量
+17. include/pv.h 			信号量的创建、PV操作、销毁定义
+18. src/pv.c 				实现pv.h
+19. include/account_sem.h 	银行账户绑定信号量集的操作
+20. src/account_sem.c 		
+21. src/account_test.c 		银行账户操作的main函数
+
+22. src/reader_writer.c 	通过信号量来控制多个进程对共享内存的操作
+
+
+
+
 管道的读写特性：
 1. 通过打开两个管道来创建一个双向的管道
 2. 管道是阻塞性的，当进程从管道中读取数据，若没有数据进程会阻塞
