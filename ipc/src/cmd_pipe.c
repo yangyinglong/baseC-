@@ -3,9 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char *cmd1[3] = {"/bin/cat", "/etc/passwd", NULL};
-char *cmd2[3] = {"/bin/grep", "root", NULL};
+// char *cmd1[3] = {"/bin/cat", "/etc/passwd", NULL};
+// char *cmd2[3] = {"/bin/grep", "root", NULL};
 
+char *cmd1[3] = {"/bin/cat", "/etc/passwd", NULL};
+char *cmd2[3] = {"awk", "-F:", "{print $7}"};
+// awk -F: '{print $7}'
 int main(int argc, char const *argv[])
 {
 	int fd[2];
@@ -48,6 +51,7 @@ int main(int argc, char const *argv[])
 			}
 			if (i == 1)	// 第二个子进程，负责读取数据
 			{
+				sleep(3);
 				// 关闭管道写入端口
 				close(fd[1]);
 				// 将标准输入重定向到管道的读取
